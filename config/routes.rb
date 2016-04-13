@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pictures
   devise_for :users
   root to: 'home#index'
   get 'about' => 'home#about'

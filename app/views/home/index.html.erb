@@ -1,13 +1,17 @@
-<div class="jumbotron">
+<div class="jumbotron center">
+	<div class="container">
 	<h1>Welcome to my Hero website</h1>
 	<p>For my favourite stars in my life</p>
 	<% if user_signed_in? %>
+
+		  <%= link_to "Add Picture", new_picture_path, class: "btn btn-default" %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
           <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default" %>
+          <%= link_to "List of pictures", pictures_path, class: "btn btn-default" %>
           
         <% else %>
           <%= link_to "Login", new_user_session_path, class: "btn btn-default" %>
 	<%= link_to "Join", new_user_registration_path, class: "btn btn-primary" %>
         <% end %>
-	
+	</div>
 </div>
