@@ -40,4 +40,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   # added for devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  #changed to see git ignore doed the changes
 end

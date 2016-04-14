@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @picture.description %>
+  
+  <%= image_tag @picture.image.url(:medium) %></br>
+  <strong>Description:</strong><%= @picture.description %></br>
+  
 </p>
 <div class="panel-footer">
 <%= link_to 'Edit', edit_picture_path(@picture) %> |
