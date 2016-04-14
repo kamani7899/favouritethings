@@ -41,5 +41,5 @@ Rails.application.configure do
   # added for devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   #changed to see git ignore doed the changes
-  #changed
+  #changed again
 end
