@@ -1,30 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Pictures</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th colspan="1" align="center"></th>
-      <th>Image</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= picture.description %></td>
-        <td><%= image_tag picture.image.url(:thumb) %></td>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<div class="panel-footer">
-<%= link_to 'New Picture', new_picture_path %>
+<%#= render 'home/top' unless user_signed_in? %>
+<div id="picture" class="transitions-enabled" >
+<% @pictures.each do |picture| %>
+    <div class="box">
+        <div class="panel panel-default">
+	    <%= link_to image_tag(picture.image.url(:medium)), picture %></br>
+	       <div class="panel-body">
+		      <%= picture.description %></br>
+		      <em><%= picture.user.name %></em></br>
+		    </div>
+	        <div class="panel-footer">
+	          <% if(picture.user == current_user) %>
+	          	<%= link_to 'Edit', edit_picture_path(picture) %>
+	          	<%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></br>
+	          <% end %>
+	        </div>	
+        </div>
+    </div>
+<% end %>
+</div>
+<div class="center">
+<%= will_paginate @pictures, renderer: BootstrapPagination::Rails %>
 </div>

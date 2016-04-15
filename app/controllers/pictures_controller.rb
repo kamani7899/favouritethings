@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = Picture.all.order('created_at DESC').paginate(page: params[:page], per_page: 8)
   end
 
   # GET /pictures/1
@@ -16,7 +16,7 @@ class PicturesController < ApplicationController
 
   # GET /pictures/new
   def new
-    @picture = Picture.new
+    @picture = current_user.pictures.new
   end
 
   # GET /pictures/1/edit
@@ -26,8 +26,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new(picture_params)
-
+    @picture = current_user.pictures.new(picture_params)
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
@@ -71,9 +70,11 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:description, :image)
+      params.require(:picture).permit(:description, :image, :name)
     end
 end
 def correct_user
-  current_user.id == Picture.find(params[:id]).user_id  
+  @picture_user_id = Picture.find(params[:id]).user_id 
+  byebug
+  current_user.id == @picture_user_id
 end

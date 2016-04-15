@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :pictures
   devise_for :users
-  root to: 'home#index'
+  root to: 'pictures#index'
   get 'about' => 'home#about'
 
   # The priority is based upon order of creation: first created -> highest priority.
