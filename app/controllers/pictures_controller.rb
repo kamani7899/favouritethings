@@ -6,7 +6,8 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all.order('created_at DESC').paginate(page: params[:page], per_page: 8)
+    @search = PictureSearch.new(params[:search])
+    @pictures = @search.scope.order('created_at DESC').paginate(page: params[:page], per_page: 8)
   end
 
   # GET /pictures/1
@@ -27,6 +28,7 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = current_user.pictures.new(picture_params)
+    @picture.name = current_user.name
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
@@ -75,6 +77,5 @@ class PicturesController < ApplicationController
 end
 def correct_user
   @picture_user_id = Picture.find(params[:id]).user_id 
-  byebug
   current_user.id == @picture_user_id
 end
