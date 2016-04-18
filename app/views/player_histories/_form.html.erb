@@ -1,0 +1,19 @@
+<%= form_for [@player, @player_history] do |f| %>
+
+  <div class="field">
+    <%= f.label :club %><br>
+    <%= f.text_field :club %>
+  </div>
+  <div class="field">
+    <%= f.label :period %><br>
+    <%= f.number_field :period %>
+  </div>
+  <div class="field">
+    <%= f.label :performance %><br>
+    <%= f.text_field :performance %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

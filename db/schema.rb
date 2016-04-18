@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414231201) do
+ActiveRecord::Schema.define(version: 20160418010603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,33 @@ ActiveRecord::Schema.define(version: 20160414231201) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "name"
+    t.integer  "player_id"
   end
 
   add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
+
+  create_table "player_histories", force: :cascade do |t|
+    t.string   "club"
+    t.integer  "period"
+    t.string   "performance"
+    t.integer  "player_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "player_histories", ["player_id"], name: "index_player_histories_on_player_id", using: :btree
+
+  create_table "players", force: :cascade do |t|
+    t.integer  "jersey"
+    t.string   "name"
+    t.string   "manager"
+    t.string   "status"
+    t.integer  "contract"
+    t.string   "club"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "quality"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -49,4 +73,5 @@ ActiveRecord::Schema.define(version: 20160414231201) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "player_histories", "players"
 end

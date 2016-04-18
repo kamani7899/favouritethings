@@ -20,6 +20,12 @@
     <%= f.label :description %><br>
     <%= f.text_field :description, class: "form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :Player %><br>
+    <%= collection_select(:picture, :player_id, Player.all, :id, :name, {}, {:multiple => false}) %>
+  </div>
+
   <div class="actions">
     <%= f.submit 'create picture', class: "btn btn-primary" %>
   </div>

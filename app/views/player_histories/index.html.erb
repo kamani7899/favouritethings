@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Player Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Club</th>
+      <th>Period</th>
+      <th>Performance</th>
+      <th>Player</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_histories.each do |player_history| %>
+      <tr>
+        <td><%= player_history.club %></td>
+        <td><%= player_history.period %></td>
+        <td><%= player_history.performance %></td>
+        <td><%= player_history.player %></td>
+        <td><%= link_to 'Show', player_history %></td>
+        <td><%= link_to 'Edit', edit_player_history_path(player_history) %></td>
+        <td><%= link_to 'Destroy', player_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player history', new_player_history_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jersey: 1
+  name: MyString
+  manager: MyString
+  status: MyString
+  contract: 1
+  club: MyString
+
+two:
+  jersey: 1
+  name: MyString
+  manager: MyString
+  status: MyString
+  contract: 1
+  club: MyString

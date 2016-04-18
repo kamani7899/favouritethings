@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  
+  resources :players do
+    collection {post :import}
+    resources :player_histories, except: [:index], controller: 'player_histories'
+  end
   resources :pictures
   devise_for :users
   root to: 'pictures#index'
   get 'about' => 'home#about'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

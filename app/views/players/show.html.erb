@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Jersey:</strong>
+  <%= @player.jersey %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
+
+<p>
+  <strong>Manager:</strong>
+  <%= @player.manager %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @player.status %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @player.quality %>
+</p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @player.contract %>
+</p>
+
+<p>
+  <strong>Club:</strong>
+  <%= @player.club %>
+</p>
+
+<div class="media">
+<div class= "media body">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Club</th>
+        <th>period</th>
+        <th>performance</th>
+        <th> Delete </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @player_histories.each do |history| %>
+      <tr>
+        <td><h4> <%= history.club %></h4></td>
+        <td><h4> <%= history.period %></h4></td>
+        <td><h4> <%= history.performance %></h4></td>
+        <td><h4> <%= link_to "Delete", [@player, history], method: :delete, confirm: "Are you sure you want to delete this history?" %></h4></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %> |
+
+<%= link_to 'Add New history', new_player_player_history_path(@player) %>

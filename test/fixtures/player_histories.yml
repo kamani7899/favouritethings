@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  club: MyString
+  period: 1
+  performance: MyString
+  player_id: 
+
+two:
+  club: MyString
+  period: 1
+  performance: MyString
+  player_id: 

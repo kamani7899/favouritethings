@@ -28,7 +28,8 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = current_user.pictures.new(picture_params)
-    @picture.name = current_user.name
+    byebug
+    @picture.name = Player.find(picture_params[:player_id]).name
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
@@ -72,7 +73,7 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:description, :image, :name)
+      params.require(:picture).permit(:description, :image, :name, :player_id)
     end
 end
 def correct_user
